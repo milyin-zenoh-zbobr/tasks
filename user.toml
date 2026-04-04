@@ -1,0 +1,14 @@
+[dispatcher]
+git_user_name = "milyin"
+git_user_email = "milyin@gmail.com"
+overwrite_author = true
+
+[tasks]
+github_repo = "milyin-zenoh-zbobr/tasks"
+github_token = { env = "ZBOBR_TASK_GITHUB_TOKEN" }
+
+[repo]
+repository = "milyin-zenoh-zbobr/tasks"
+branch = "main"
+github_token = { env = "ZBOBR_TASK_GITHUB_TOKEN" }
+
