@@ -21,8 +21,20 @@ Steps to configure the orchestrator
   - Add the following permissions:
     - Issues: R/W
     - Contents: R/W
-  - Store the token in the root .env file 
+  - Store the token in the root .env file
 
-- On the fresh machine (no need to login with own github account) pull this repository using token above
+- On the fresh machine (no need to login with own github account) 
+  - clone https://github.com/milyin/zbobr.git
+  - clone this repository using token above
+  - update the `.env` file with this token
+
+```sh
+git clone https://github.com/milyin/zbobr.git
+git clone https://USERNAME:TOKEN@github.com/milyin-zenoh-zbobr/tasks.git
+cd tasks
+echo ZBOBR_TASK_GITHUB_TOKEN=TOKEN > .env
+```
+
+- 
 
 - Create access token for giving zbobr access to the repository to work on. For safety create separate token for each repository. 
