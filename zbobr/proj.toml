@@ -4,4 +4,4 @@ instance = "zbobr"
 [repo]
 repository = "milyin/zbobr"
 branch = "main"
-github_token = { env = "ZBOBR_ZBOBR_GITHUB_TOKEN" }
+github_token = { env = "ZBOBR_PROJ_ZBOBR_GITHUB_TOKEN" }

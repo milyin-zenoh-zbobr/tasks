@@ -18,7 +18,7 @@ while true; do
     # get the task to execute by calling 
     # `zbobr_proj.sh <project_directory> task --select`
     # If the task id is empty, wait for 60 seconds and check again
-    TASK_ID=$($DIR/zbobr_proj.sh $PROJECT_DIR task --select)
+    TASK_ID=$(source $DIR/zbobr_proj.sh $PROJECT_DIR task --select)
     if [ -z "$TASK_ID" ]; then
         echo "No task found, waiting for 60 seconds..."
         sleep 60
@@ -26,5 +26,5 @@ while true; do
     fi
 
     # process the task by calling `zbobr_proj.sh <project_directory> task proceed $TASK_ID`
-    $DIR/zbobr_proj.sh $PROJECT_DIR task proceed $TASK_ID
+    source $DIR/zbobr_proj.sh $PROJECT_DIR task proceed $TASK_ID
 done
