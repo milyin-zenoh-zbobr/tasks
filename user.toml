@@ -5,10 +5,4 @@ overwrite_author = true
 
 [tasks]
 github_repo = "milyin-zenoh-zbobr/tasks"
-github_token = { env = "ZBOBR_TASK_GITHUB_TOKEN" }
-
-[repo]
-repository = "milyin-zenoh-zbobr/tasks"
-branch = "main"
-github_token = { env = "ZBOBR_TASK_GITHUB_TOKEN" }
-
+github_token = { env = "ZBOBR_TASKS_GITHUB_TOKEN" }

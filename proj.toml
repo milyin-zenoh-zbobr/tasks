@@ -1,0 +1,7 @@
+[dispatcher]
+instance = "tasks"
+
+[repo]
+repository = "milyin-zenoh-zbobr/tasks"
+branch = "main"
+github_token = { env = "ZBOBR_PROJ_TASKS_GITHUB_TOKEN" }
