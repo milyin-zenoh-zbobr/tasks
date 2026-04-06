@@ -1,4 +1,6 @@
 .env
 prompts/*.new
 *.new
+repos
+workspaces
 
