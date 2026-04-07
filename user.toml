@@ -4,5 +4,6 @@ git_user_email = "milyin@gmail.com"
 overwrite_author = true
 
 [tasks]
+reports_branch = "reports"
 github_repo = "milyin-zenoh-zbobr/tasks"
 github_token = { env = "ZBOBR_TASKS_GITHUB_TOKEN" }
