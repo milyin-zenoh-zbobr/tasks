@@ -1,1 +1,0 @@
-Fix the hoister in `parse_cli` (zbobr-dispatcher/src/cli.rs) to only consume the next token as a value for OptionalValue args (like `--logs`) when it is a valid boolean literal ("true"/"false"). This applies to both pre-subcommand and post-subcommand paths. Currently the pre-subcommand path doesn't normalize at all, and the post-subcommand path consumes any non-flag token.
