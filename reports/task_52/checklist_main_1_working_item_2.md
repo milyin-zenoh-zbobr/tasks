@@ -1,1 +1,0 @@
-Update existing tests and add new tests in zbobr/src/main.rs to verify: (1) `--logs true` and `--logs false` space-separated forms work, (2) invalid values like `--logs=maybe` are rejected, (3) existing tests pass with the Vec<bool> change.
