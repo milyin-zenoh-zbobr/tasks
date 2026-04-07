@@ -1,0 +1,1 @@
+Run go build and connectivity tests to verify everything compiles and passes.
