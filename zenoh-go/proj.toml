@@ -1,0 +1,7 @@
+[dispatcher]
+instance = "zenoh-go"
+
+[repo]
+repository = "milyin-zenoh-zbobr/zenoh-go"
+branch = "main"
+github_token = { env = "ZBOBR_PROJ_ZENOH_GO_GITHUB_TOKEN" }

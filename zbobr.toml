@@ -144,7 +144,7 @@ mcp = [
     "get_ctx_rec",
 ]
 prompt = "linter_worker.md"
-tool = "developer"
+tool = "helper"
 
 [workflow.roles.merger]
 mcp = [
