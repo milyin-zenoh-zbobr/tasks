@@ -1,0 +1,1 @@
+In both accessors, when z_internal_string_check returns false, the owned string is never dropped. Always call zc_cgo_string_drop before returning, even on the empty path.
