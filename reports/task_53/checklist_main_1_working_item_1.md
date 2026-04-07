@@ -1,0 +1,1 @@
+Extract ZId, WhatAmI, IsQos, IsMulticast, IsShm from the cloned transport in the callback, drop the C object immediately, and store Go values in the event struct. Add direct accessors on TransportEvent. Remove the Transport() method that returned a pointer to owned C object.
