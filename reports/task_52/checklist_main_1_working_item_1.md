@@ -1,0 +1,1 @@
+Change the `logs` field in both `Cli` (zbobr/src/main.rs) and `GlobalArgs` (zbobr-dispatcher/src/cli.rs) from `Vec<String>` to `Vec<bool>`. Update `resolve_logs` to work with `&[bool]`. This ensures clap rejects invalid values like `--logs=maybe` at parse time.
