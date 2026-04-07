@@ -29,7 +29,6 @@ Create access token for giving zbobr access to the tasks (issues) repository. It
   - Issues: R/W
   - Contents: R/W
   - Workflows: R/W
-  - Pull requests: R/W
 - Store the token in the root .env file
 
 ### Clone `zbobr` and configs repository
@@ -112,3 +111,5 @@ Create project directory for instance to run.
   #### Executing the `zbobr` instance
 
   Run script `loop_proj.sh foo` where `foo` is the name of the project. This script takes the task ready to execution and processes one execution stage on it, then repeats.
+
+  Uncomment pulling this repo in the script if necessary to automatically apply prompts and configs from the github.
