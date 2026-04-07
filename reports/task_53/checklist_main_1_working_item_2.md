@@ -1,0 +1,1 @@
+Extract all link fields (ZId, Src, Dst, Group, Mtu, IsStreamed, Interfaces, AuthIdentifier, Priorities, Reliability) from the cloned link in the callback, drop the C object immediately, store Go values in the event struct. Add direct accessors on LinkEvent. Remove the Link() method that returned a pointer to owned C object.
