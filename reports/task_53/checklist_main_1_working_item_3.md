@@ -1,0 +1,1 @@
+Update connectivity_test.go and z_info.go to use the new event accessor methods instead of evt.Transport().X() and evt.Link().X().
