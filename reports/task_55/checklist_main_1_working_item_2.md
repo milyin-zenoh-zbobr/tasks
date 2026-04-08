@@ -1,0 +1,1 @@
+In zbobr/src/init.rs:615-618, change workflow_prompts to include both main (as ExplicitNone/nan) and task in the correct order. This ensures merged result is always main, task regardless of where role defines main.
