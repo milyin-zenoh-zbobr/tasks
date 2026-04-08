@@ -1,0 +1,1 @@
+In zbobr-dispatcher/src/prompts.rs:215-233, replace the duplicated shift_remove+insert pattern with in-place updates using get_mut().
