@@ -1,0 +1,3 @@
+In `Cargo.toml`, comment out the existing lines for `zenoh`, `zenoh-ext`, `zenoh-runtime`, and `zenoh-util` that reference `eclipse-zenoh/zenoh.git` on `main` (these appear in both `[dependencies]` around lines 81–84 and `[build-dependencies]` around line 91). Add replacement lines pointing to `milyin-zenoh-zbobr/zenoh.git` on branch `zbobr_fix-59-implement-transport-from-fields-constructor`, preserving all other options (version, default-features, features). Leave the originals as comments so they can be restored when the upstream PR merges.
+
+Why: The `Transport::from_fields(...)` constructor used in the next step only exists in this fork, not yet in the upstream eclipse-zenoh/zenoh main branch.
