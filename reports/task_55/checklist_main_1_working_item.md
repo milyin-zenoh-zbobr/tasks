@@ -1,0 +1,1 @@
+In zbobr-api/src/config/mod.rs:27-35, replace the shift_remove+insert pattern with an in-place update using get_mut(). This preserves the position of existing keys when overriding their value.
