@@ -10,5 +10,5 @@ if [ -z "$PROJECT_DIR" ]; then
     exit 1
 fi
 ZBOBR_CMD="source $DIR/zbobr_proj.sh $PROJECT_DIR --logs"
-source $DIR/loop.sh
+source $DIR/base/loop.sh
 

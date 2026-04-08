@@ -1,5 +1,5 @@
 .env
-prompts/*.new
+base/prompts/*.new
 *.new
 repos
 workspaces
