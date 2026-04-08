@@ -1,0 +1,1 @@
+All checklist items completed. The implementation replaces the old `prompt`/`role_prompt`/`prompts: Vec` fields with a unified `prompts: Option<IndexMap<String, TomlOption<PathBuf>>>` at all three config levels. The three-level merge (workflow → role → stage) uses per-key `TomlOption` semantics where `nan` clears inherited slots. All 138+ tests pass.
