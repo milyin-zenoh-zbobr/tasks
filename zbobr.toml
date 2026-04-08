@@ -48,6 +48,10 @@ value = ""
 [workflow]
 prompts_dir = "prompts"
 
+[workflow.prompts]
+main = nan
+task = "task.md"
+
 [workflow.roles.planner]
 mcp = [
     "stop_with_error",
@@ -57,8 +61,8 @@ mcp = [
     "add_checklist_item",
     "get_ctx_rec",
 ]
-prompt = "planner.md"
 tool = "planner"
+prompts = { main = "planner.md" }
 
 [workflow.roles.worker]
 mcp = [
@@ -71,8 +75,8 @@ mcp = [
     "check_checklist_item",
     "get_ctx_rec",
 ]
-prompt = "worker.md"
 tool = "developer"
+prompts = { main = "worker.md" }
 
 [workflow.roles.test_planner]
 mcp = [
@@ -83,8 +87,8 @@ mcp = [
     "add_checklist_item",
     "get_ctx_rec",
 ]
-prompt = "test_planner.md"
 tool = "planner"
+prompts = { main = "test_planner.md" }
 
 [workflow.roles.test_worker]
 mcp = [
@@ -97,8 +101,8 @@ mcp = [
     "check_checklist_item",
     "get_ctx_rec",
 ]
-prompt = "test_worker.md"
 tool = "helper"
+prompts = { main = "test_worker.md" }
 
 [workflow.roles.reviewer]
 mcp = [
@@ -110,8 +114,8 @@ mcp = [
     "check_checklist_item",
     "get_ctx_rec",
 ]
-prompt = "reviewer.md"
 tool = "reviewer"
+prompts = { main = "reviewer.md" }
 
 [workflow.roles.tester]
 mcp = [
@@ -121,8 +125,8 @@ mcp = [
     "stop_with_question",
     "get_ctx_rec",
 ]
-prompt = "tester.md"
 tool = "helper"
+prompts = { main = "tester.md" }
 
 [workflow.roles.linter]
 mcp = [
@@ -132,8 +136,8 @@ mcp = [
     "stop_with_question",
     "get_ctx_rec",
 ]
-prompt = "linter.md"
 tool = "drudge"
+prompts = { main = "linter.md" }
 
 [workflow.roles.linter_worker]
 mcp = [
@@ -143,8 +147,8 @@ mcp = [
     "stop_with_question",
     "get_ctx_rec",
 ]
-prompt = "linter_worker.md"
 tool = "helper"
+prompts = { main = "linter_worker.md" }
 
 [workflow.roles.merger]
 mcp = [
@@ -152,18 +156,18 @@ mcp = [
     "report_success",
     "stop_with_question",
 ]
-prompt = "merger.md"
 tool = "helper"
-
-[workflow.pipelines.main]
-stages.planning = { role = "planner", prompts = ["task.md"], on_intermediate = { pause = true } }
-stages.working = { role = "worker", prompts = ["task.md"], on_failure = { next = "working", pause = true }, on_intermediate = { next = "reviewing" } }
-stages.reviewing = { role = "reviewer", prompts = ["task.md"], on_failure = { next = "working" }, on_intermediate = { next = "test_planner" } }
-stages.test_planner = { role = "test_planner", prompts = ["task.md"], on_failure = { next = "working" }, on_intermediate = { next = "test_worker" } }
-stages.test_worker = { role = "test_worker", prompts = ["task.md"], on_failure = { next = "test_worker", pause = true }, on_intermediate = { next = "working" } }
-stages.linting = { role = "linter", prompts = ["task.md"], on_success = { next = "testing" }, on_failure = { next = "linter_worker" } }
-stages.linter_worker = { role = "linter_worker", prompts = ["task.md"], on_success = { next = "linting" }, on_failure = { next = "working" } }
-stages.testing = { role = "tester", prompts = ["task.md"], on_failure = { next = "working" } }
+prompts = { main = "merger.md" }
 
 [workflow.pipelines.merge]
-stages.merging = { role = "merger", prompts = ["task.md"] }
+stages.merging = { role = "merger", prompts = { task = nan } }
+
+[workflow.pipelines.main]
+stages.planning = { role = "planner", on_intermediate = { pause = true } }
+stages.working = { role = "worker", on_failure = { next = "working", pause = true }, on_intermediate = { next = "reviewing" } }
+stages.reviewing = { role = "reviewer", on_failure = { next = "working" }, on_intermediate = { next = "test_planner" } }
+stages.test_planner = { role = "test_planner", on_failure = { next = "working" }, on_intermediate = { next = "test_worker" } }
+stages.test_worker = { role = "test_worker", on_failure = { next = "test_worker", pause = true }, on_intermediate = { next = "working" } }
+stages.linting = { role = "linter", on_success = { next = "testing" }, on_failure = { next = "linter_worker" } }
+stages.linter_worker = { role = "linter_worker", on_success = { next = "linting" }, on_failure = { next = "working" } }
+stages.testing = { role = "tester", on_failure = { next = "working" } }
