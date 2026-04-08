@@ -1,0 +1,1 @@
+In zbobr-api/src/config/mod.rs resolve_tool(), match on stage_def.tool directly: Value(tool) → return Ok(tool), ExplicitNone → bail (no fallback), Absent → fall through to role-level tool. Add test.
