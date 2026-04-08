@@ -1,0 +1,1 @@
+Plan is ready for approval. It's a small, focused change: one new constructor method in `zenoh/src/api/info.rs` following the existing `empty()` pattern, gated with `#[zenoh_macros::internal]`.
