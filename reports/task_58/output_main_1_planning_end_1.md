@@ -1,0 +1,1 @@
+Plan is ready with 5 checklist items covering the full implementation. The approach introduces `TomlOption<T>` with NaN-based explicit clearing, updates both the proc macro and manual config types, and includes comprehensive tests.
