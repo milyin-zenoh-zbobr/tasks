@@ -1,0 +1,1 @@
+The background CMake build already completed successfully (exit code 0) — that result was used to verify the fix before committing.
