@@ -1,0 +1,1 @@
+Fixed. The change replaces the error-swallowing `match` block with a simple `result?`, so any `merge-upstream` failure now propagates up and prevents `git fetch origin` from running with stale fork refs. All 31 tests pass.
