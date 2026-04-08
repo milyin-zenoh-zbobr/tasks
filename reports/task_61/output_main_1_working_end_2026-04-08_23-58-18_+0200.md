@@ -1,0 +1,1 @@
+Done. Added `auto_sync_fork: true` to the `ZbobrRepoBackendGithubConfig` struct literal in the integration test env file, fixing the compile error identified in the review.
