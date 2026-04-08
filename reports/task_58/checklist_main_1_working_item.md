@@ -1,0 +1,1 @@
+In zbobr-api/src/config/mod.rs resolve_single_provider(), match on each TomlOption field: executor=ExplicitNone→error, priority=ExplicitNone→default 10, plan_mode=ExplicitNone→default false, access_key=ExplicitNone→None. Add test.
