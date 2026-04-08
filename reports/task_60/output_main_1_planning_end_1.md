@@ -1,0 +1,1 @@
+I've paused the task with a question for the user. Waiting for their response before proceeding with the plan.
