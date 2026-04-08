@@ -7,3 +7,6 @@ overwrite_author = true
 reports_branch = "reports"
 github_repo = "milyin-zenoh-zbobr/tasks"
 github_token = { env = "ZBOBR_TASKS_GITHUB_TOKEN" }
+
+[workflow.roles]
+worker.prompts.global_ext = "prompts/worker.md"
