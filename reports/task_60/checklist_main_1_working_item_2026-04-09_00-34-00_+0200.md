@@ -1,0 +1,1 @@
+The approved plan only calls for a single `zc_internal_transport_from_fields` constructor. The `zc_internal_transport_from_fields_shm` function was added beyond the approved scope. Remove it and ensure the generated header is updated.
