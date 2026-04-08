@@ -1,0 +1,1 @@
+In zbobr-dispatcher/src/prompts.rs prompt_files_for_stage(), match on stage_def.role_prompt directly: Value(main)→push, ExplicitNone→skip role fallback, Absent→fall through to role-level prompt. Add test.
