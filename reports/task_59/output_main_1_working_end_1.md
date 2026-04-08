@@ -1,0 +1,1 @@
+Task complete. The `Transport::new_from_fields()` constructor was implemented and verified in the previous session (commit `0366230d3`).
