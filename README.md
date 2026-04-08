@@ -53,11 +53,13 @@ The `zbobr` project is not published to crates.io yet, clone it from github to w
   echo ZBOBR_PROJ_TASKS_GITHUB_TOKEN=TOKEN >> .env
   ```
 
-- Update root config and prompts with latest versions. Use `--force` flag for actual owerwrite, otherwise in case of difference the file `.new` will be created.
+- Update base config and prompts with latest versions. Use `--force` flag for actual owerwrite, otherwise in case of difference the file `.new` will be created.
 
   ```sh
-  ./zbobr.sh init . --force
+  ./zbobr.sh init base --force
   ```
+
+  The root toml configs and the project specific configs overrides the settings from default `base/zbobr.toml`.
 
 ### Configure the instances
 

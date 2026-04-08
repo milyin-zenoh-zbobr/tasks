@@ -1,0 +1,3 @@
+Avoid using fully qualified types/functions, like `foo_crate::bar_mod::BuzzType`. Add `use foo_crate::bar_mod` to the header of the file. Even for feature-gated code prefer use feature-gated `use` in the header. But make exception to this rule if there are other usage of this type/function in the same file in the fully qualidied form already exists - following the existing pattern have higher priority.
+
+F
