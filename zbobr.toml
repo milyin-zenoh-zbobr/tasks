@@ -22,8 +22,8 @@ claude_planner = { parent = "claude", plan_mode = true }
 copilot_planner = { parent = "copilot", plan_mode = true }
 
 [dispatcher.tools]
-developer = [{ provider = "claude", model = "claude-opus-4-6" }, { provider = "copilot", model = "claude-sonnet-4.6", priority = 0 }]
-planner = [{ provider = "claude_planner", model = "claude-opus-4-6" }, { provider = "copilot_planner", model = "claude-sonnet-4.6", priority = 0 }]
+developer = [{ provider = "claude", model = "claude-sonnet-4-6" }, { provider = "copilot", model = "claude-sonnet-4.6", priority = 0 }]
+planner = [{ provider = "claude_planner", model = "claude-sonnet-4-6" }, { provider = "copilot_planner", model = "claude-sonnet-4.6", priority = 0 }]
 helper = [{ provider = "copilot", model = "claude-haiku-4.5" }, { provider = "claude", model = "claude-haiku-4-5", priority = 0 }]
 reviewer = [{ provider = "copilot", model = "gpt-5.4" }, { provider = "claude", model = "claude-sonnet-4-6", priority = 0 }]
 drudge = [{ provider = "copilot", model = "gpt-5-mini" }, { provider = "claude", model = "claude-haiku-4-5", priority = 0 }]
