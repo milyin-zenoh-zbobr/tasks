@@ -1,0 +1,1 @@
+In src/info.rs, the two new constructors use `_ => WhatAmI::Client` which silently treats invalid whatami values as Client. Fix this to explicitly enumerate CLIENT and log a panic/warning for invalid values, matching the robustness of other whatami handling in the codebase.
