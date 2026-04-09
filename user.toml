@@ -10,3 +10,8 @@ github_token = { env = "ZBOBR_TASKS_GITHUB_TOKEN" }
 
 [workflow.roles]
 worker.prompts.global_ext = "prompts/worker.md"
+
+[dispatcher.tools]
+developer = [{ provider = "claude", model = "claude-sonnet-4-6" }, { provider = "copilot", model = "claude-sonnet-4.6", priority = 0 }]
+planner = [{ provider = "claude_planner", model = "claude-sonnet-4-6" }, { provider = "copilot_planner", model = "claude-sonnet-4.6", priority = 0 }]
+

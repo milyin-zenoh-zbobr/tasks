@@ -22,8 +22,8 @@ claude_planner = { parent = "claude", plan_mode = true }
 copilot_planner = { parent = "copilot", plan_mode = true }
 
 [dispatcher.tools]
-developer = [{ provider = "claude", model = "claude-sonnet-4-6" }, { provider = "copilot", model = "claude-sonnet-4.6", priority = 0 }]
-planner = [{ provider = "claude_planner", model = "claude-sonnet-4-6" }, { provider = "copilot_planner", model = "claude-sonnet-4.6", priority = 0 }]
+developer = [{ provider = "claude", model = "claude-opus-4-6" }, { provider = "copilot", model = "claude-sonnet-4.6", priority = 0 }]
+planner = [{ provider = "claude_planner", model = "claude-opus-4-6" }, { provider = "copilot_planner", model = "claude-sonnet-4.6", priority = 0 }]
 helper = [{ provider = "copilot", model = "claude-haiku-4.5" }, { provider = "claude", model = "claude-haiku-4-5", priority = 0 }]
 reviewer = [{ provider = "copilot", model = "gpt-5.4" }, { provider = "claude", model = "claude-sonnet-4-6", priority = 0 }]
 drudge = [{ provider = "copilot", model = "gpt-5-mini" }, { provider = "claude", model = "claude-haiku-4-5", priority = 0 }]
@@ -31,26 +31,19 @@ drudge = [{ provider = "copilot", model = "gpt-5-mini" }, { provider = "claude",
 [tasks]
 default_max_stage_count = 20
 github_repo = "owner/repo"
-
-[tasks.github_token]
-value = ""
+github_token.value = ""
 
 [repo]
 repository = "owner/repo"
 branch = "main"
 repos_dir = "./repos"
-
-[repo.github_token]
-value = ""
+github_token.value = ""
 
 [executor.copilot]
 
-[workflow]
-prompts_dir = "prompts"
-
 [workflow.prompts]
 main = nan
-task = "task.md"
+task = "prompts/task.md"
 
 [workflow.roles.planner]
 mcp = [
@@ -62,7 +55,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "planner"
-prompts = { main = "planner.md" }
+prompts = { main = "prompts/planner.md" }
 
 [workflow.roles.worker]
 mcp = [
@@ -76,7 +69,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "developer"
-prompts = { main = "worker.md" }
+prompts = { main = "prompts/worker.md" }
 
 [workflow.roles.test_planner]
 mcp = [
@@ -88,7 +81,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "planner"
-prompts = { main = "test_planner.md" }
+prompts = { main = "prompts/test_planner.md" }
 
 [workflow.roles.test_worker]
 mcp = [
@@ -102,7 +95,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "helper"
-prompts = { main = "test_worker.md" }
+prompts = { main = "prompts/test_worker.md" }
 
 [workflow.roles.reviewer]
 mcp = [
@@ -115,7 +108,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "reviewer"
-prompts = { main = "reviewer.md" }
+prompts = { main = "prompts/reviewer.md" }
 
 [workflow.roles.tester]
 mcp = [
@@ -126,7 +119,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "helper"
-prompts = { main = "tester.md" }
+prompts = { main = "prompts/tester.md" }
 
 [workflow.roles.linter]
 mcp = [
@@ -137,7 +130,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "drudge"
-prompts = { main = "linter.md" }
+prompts = { main = "prompts/linter.md" }
 
 [workflow.roles.linter_worker]
 mcp = [
@@ -148,7 +141,7 @@ mcp = [
     "get_ctx_rec",
 ]
 tool = "helper"
-prompts = { main = "linter_worker.md" }
+prompts = { main = "prompts/linter_worker.md" }
 
 [workflow.roles.merger]
 mcp = [
@@ -157,10 +150,7 @@ mcp = [
     "stop_with_question",
 ]
 tool = "helper"
-prompts = { main = "merger.md" }
-
-[workflow.pipelines.merge]
-stages.merging = { role = "merger", prompts = { task = nan } }
+prompts = { main = "prompts/merger.md" }
 
 [workflow.pipelines.main]
 stages.planning = { role = "planner", on_intermediate = { pause = true } }
@@ -171,3 +161,6 @@ stages.test_worker = { role = "test_worker", on_failure = { next = "test_worker"
 stages.linting = { role = "linter", on_success = { next = "testing" }, on_failure = { next = "linter_worker" } }
 stages.linter_worker = { role = "linter_worker", on_success = { next = "linting" }, on_failure = { next = "working" } }
 stages.testing = { role = "tester", on_failure = { next = "working" } }
+
+[workflow.pipelines.merge]
+stages.merging = { role = "merger", prompts = { task = nan } }

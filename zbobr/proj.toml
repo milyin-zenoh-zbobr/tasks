@@ -5,3 +5,11 @@ instance = "zbobr"
 repository = "milyin/zbobr"
 branch = "main"
 github_token = { env = "ZBOBR_PROJ_ZBOBR_GITHUB_TOKEN" }
+
+#[workflow.pipelines.main]
+#stages.reviewing = { on_intermediate = { next = "testing" } }
+#stages.test_planner = nan
+#stages.test_worker = nan
+#stages.linting = nan
+#stages.linter_worker = nan
+

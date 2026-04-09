@@ -3,4 +3,7 @@ base/prompts/*.new
 *.new
 repos
 workspaces
+base/*.new
+base/workspaces
+base/repos
 
