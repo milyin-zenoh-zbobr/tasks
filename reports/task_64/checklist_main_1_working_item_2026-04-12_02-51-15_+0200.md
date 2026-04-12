@@ -1,0 +1,1 @@
+Insert a call to `self.sync_fork_if_needed(repo).await?;` in `ensure_bare_clone_github` just before the existing `git_env fetch origin` at line 341. The fetch that follows will pick up the synced content.
