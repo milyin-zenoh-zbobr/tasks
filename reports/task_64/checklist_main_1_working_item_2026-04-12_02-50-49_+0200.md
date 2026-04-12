@@ -1,0 +1,1 @@
+Add `fork: bool` and `parent: Option<ParentRepo>` to the `RepoResponse` struct, and define the `ParentRepo` struct with `full_name: String`. These capture GitHub's fork metadata from GET /repos/{owner}/{repo}.
