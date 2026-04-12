@@ -41,6 +41,10 @@ github_token.value = ""
 
 [executor.copilot]
 
+[workflow]
+on_start = "main"
+on_merge = "merge"
+
 [workflow.prompts]
 main = nan
 task = "prompts/task.md"
@@ -51,7 +55,6 @@ mcp = [
     "stop_with_question",
     "report_success",
     "report_intermediate",
-    "add_checklist_item",
     "get_ctx_rec",
 ]
 tool = "planner"
@@ -70,32 +73,6 @@ mcp = [
 ]
 tool = "developer"
 prompts = { main = "prompts/worker.md" }
-
-[workflow.roles.test_planner]
-mcp = [
-    "stop_with_error",
-    "stop_with_question",
-    "report_success",
-    "report_intermediate",
-    "add_checklist_item",
-    "get_ctx_rec",
-]
-tool = "planner"
-prompts = { main = "prompts/test_planner.md" }
-
-[workflow.roles.test_worker]
-mcp = [
-    "stop_with_error",
-    "report_success",
-    "report_failure",
-    "report_intermediate",
-    "stop_with_question",
-    "add_checklist_item",
-    "check_checklist_item",
-    "get_ctx_rec",
-]
-tool = "helper"
-prompts = { main = "prompts/test_worker.md" }
 
 [workflow.roles.reviewer]
 mcp = [
@@ -155,9 +132,7 @@ prompts = { main = "prompts/merger.md" }
 [workflow.pipelines.main]
 stages.planning = { role = "planner", on_intermediate = { pause = true } }
 stages.working = { role = "worker", on_failure = { next = "working", pause = true }, on_intermediate = { next = "reviewing" } }
-stages.reviewing = { role = "reviewer", on_failure = { next = "working" }, on_intermediate = { next = "test_planner" } }
-stages.test_planner = { role = "test_planner", on_failure = { next = "working" }, on_intermediate = { next = "test_worker" } }
-stages.test_worker = { role = "test_worker", on_failure = { next = "test_worker", pause = true }, on_intermediate = { next = "working" } }
+stages.reviewing = { role = "reviewer", on_failure = { next = "working" }, on_intermediate = { next = "working" } }
 stages.linting = { role = "linter", on_success = { next = "testing" }, on_failure = { next = "linter_worker" } }
 stages.linter_worker = { role = "linter_worker", on_success = { next = "linting" }, on_failure = { next = "working" } }
 stages.testing = { role = "tester", on_failure = { next = "working" } }

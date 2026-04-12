@@ -8,5 +8,4 @@ github_token = { env = "ZBOBR_PROJ_ZENOH_C_GITHUB_TOKEN" }
 
 [workflow.roles]
 worker.prompts = { ext = "prompts/worker.md", commit = "prompts/commit.md" }
-test_worker.prompts = { ext = "prompts/worker.md", commit = "prompts/commit.md" }
 reviewer.prompts = { ext = "prompts/reviewer.md" }
