@@ -1,0 +1,1 @@
+Create zenoh-jni/src/owned_object.rs - a safe Arc accessor preventing early drops. Copy verbatim from zenoh-kotlin's owned_object.rs with copyright year updated to 2026.
