@@ -1,0 +1,7 @@
+[dispatcher]
+instance = "zenoh-java"
+
+[repo]
+repository = "milyin-zenoh-zbobr/zenoh-java"
+branch = "main"
+github_token = { env = "ZBOBR_PROJ_ZENOH_JAVA_GITHUB_TOKEN" }

@@ -42,7 +42,7 @@ github_token.value = ""
 [executor.copilot]
 
 [workflow]
-on_start = "main"
+on_start = "plan"
 on_merge = "merge"
 
 [workflow.prompts]
@@ -54,11 +54,21 @@ mcp = [
     "stop_with_error",
     "stop_with_question",
     "report_success",
-    "report_intermediate",
     "get_ctx_rec",
 ]
 tool = "planner"
 prompts = { main = "prompts/planner.md" }
+
+[workflow.roles.plan_reviewer]
+mcp = [
+    "stop_with_error",
+    "stop_with_question",
+    "report_success",
+    "report_failure",
+    "get_ctx_rec",
+]
+tool = "reviewer"
+prompts = { main = "prompts/plan_reviewer.md" }
 
 [workflow.roles.worker]
 mcp = [
@@ -129,9 +139,15 @@ mcp = [
 tool = "helper"
 prompts = { main = "prompts/merger.md" }
 
-[workflow.pipelines.main]
-stages.planning = { role = "planner", on_intermediate = { pause = true } }
-stages.working = { role = "worker", on_failure = { next = "working", pause = true }, on_intermediate = { next = "reviewing" } }
+[workflow.pipelines.plan]
+stages.planning = { role = "planner" }
+stages.plan_review_adversarial = { role = "plan_reviewer", on_failure = { next = "planning" }, on_intermediate = { next = "plan_review_user" } }
+stages.plan_review_user = { pause = true, on_failure = { next = "planning" } }
+stages.call_work = { call = "work" }
+
+[workflow.pipelines.work]
+stages.working = { role = "worker", on_success = { next = "reviewing" }, on_failure = { next = "pause_retry_working" }, on_intermediate = { next = "working" } }
+stages.pause_retry_working = { pause = true, on_success = { next = "working" }, on_failure = { next = "reviewing" }, on_no_report = { next = "working" } }
 stages.reviewing = { role = "reviewer", on_failure = { next = "working" }, on_intermediate = { next = "working" } }
 stages.linting = { role = "linter", on_success = { next = "testing" }, on_failure = { next = "linter_worker" } }
 stages.linter_worker = { role = "linter_worker", on_success = { next = "linting" }, on_failure = { next = "working" } }

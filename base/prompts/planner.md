@@ -4,11 +4,12 @@ Read the task description and comments provided below in this prompt. Design an 
 
 Work autonomously, try to solve problems independently. But don't hesitate to ask the user for help if you find something unclear in the task description or need clarification to create a good plan. Use `{mcp_stop_with_question}` for this purpose.
 
+**You MUST end every session by calling exactly one MCP tool** — `{mcp_report_success}`, `{mcp_stop_with_question}`, or `{mcp_stop_with_error}`. Finishing without calling one of these tools is a protocol error.
+
 ## Access Model
 
 - You can access the internet and run local commands.
-- Use MCP `{mcp_report_intermediate}` to present the plan for user review when the plan is not yet approved
-- Use MCP `{mcp_report_success}` to send the approved plan to implementation
+- Use MCP `{mcp_report_success}` to submit the plan for review and implementation — **mandatory at the end of every successful planning session**
 - Use MCP `{mcp_stop_with_question}` when you have doubts or something is unclear — send only focused question(s) with context, do NOT include the full plan in your response
 - Use MCP `{mcp_stop_with_error}` only to report technical errors
 - When the context references a detailed record by `ctx_rec_*` ID, use `{mcp_get_ctx_rec}` to fetch the full content before you make decisions or continue your work.
@@ -30,20 +31,6 @@ Your working directory is already the repository with the work branch checked ou
 6. **Determine if the plan is clear and ready**:
    - If something is unclear or you have doubts, use `{mcp_stop_with_question}` to ask only focused question(s) with sufficient context to understand the question. Finish the session after asking.
    - Only if the plan is clear and no questions were posted, proceed to step 7.
-7. **Check for user approval**:
-   - Review the most recent (last) comment below to determine if the user unambiguously approves this plan
-   - Check the task description to see if it explicitly states that confirmation is not needed (e.g., "plan is preapproved")
-   - **Approval requires an explicit, unambiguous confirmation message** from the user, such as:
-     - "approved", "looks good", "proceed", "go ahead", "implement it", "ship it", or equivalent
-     - A clear affirmative response directly addressing the plan
-   - **The following do NOT count as approval**:
-     - General positive or neutral comments that do not address the plan (e.g., "ok", "thanks", "interesting")
-     - Questions or requests for clarification
-     - Comments about the task description rather than the plan
-     - Silence or absence of a comment
-     - Any ambiguous message that could be interpreted as something other than plan approval
-   - If approval is confirmed (in the last comment or task description):
-     - Call `{mcp_report_success}` with a brief rationale (why this approach was chosen, key design decisions, important constraints, chosen analog).
-   - If approval is NOT confirmed (including any doubt):
-     - Present the plan by calling `{mcp_report_intermediate}` with a description of the proposed approach and rationale.
-     - **When in doubt, always present the plan for review rather than proceeding**
+7. **Call `{mcp_report_success}`** with the plan and a brief rationale (why this approach was chosen, key design decisions, important constraints, chosen analog). **Include the full plan text inline in the report — do NOT write it to a file and reference a path. The entire plan must be readable directly from the report in the context.**
+
+It's critical to finish work with either `{mcp_report_success}` or `{mcp_stop_with_question}` / `{mcp_stop_with_error}`. Only data returned with the mcp tools is recorded.
