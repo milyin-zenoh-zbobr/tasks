@@ -1,0 +1,1 @@
+In zenoh-jni/Cargo.toml, change zenoh-ext features from `["internal"]` to `["unstable", "internal"]` on line 40. This is the root fix required for AdvancedPublisher, AdvancedSubscriber and related types to be available from zenoh-ext.
