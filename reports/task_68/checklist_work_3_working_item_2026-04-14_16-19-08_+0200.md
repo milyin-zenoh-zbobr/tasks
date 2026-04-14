@@ -1,0 +1,1 @@
+Run `cargo build --manifest-path zenoh-jni/Cargo.toml` and verify with nm that required symbols exist: openSessionViaJNI, Advanced*, MatchingListener, SampleMissListener.
