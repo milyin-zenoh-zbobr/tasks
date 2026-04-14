@@ -1,0 +1,1 @@
+Create zenoh-jni/src/sample_callback.rs - SetJniSampleCallback trait for JNI callback wiring. Copy verbatim from zenoh-kotlin's sample_callback.rs.
