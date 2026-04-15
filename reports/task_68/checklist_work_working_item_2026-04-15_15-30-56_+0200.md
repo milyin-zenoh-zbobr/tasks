@@ -1,0 +1,1 @@
+The reviewer found that zenoh-jni-runtime/src/androidMain/AndroidManifest.xml is missing. The build.gradle.kts configures the Android source set to use src/androidMain/AndroidManifest.xml, but the file doesn't exist. The existing zenoh-java module has this file. Need to create it following the same minimal manifest pattern.
