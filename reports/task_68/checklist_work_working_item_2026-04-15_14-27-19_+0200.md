@@ -1,0 +1,14 @@
+Update zenoh-java module to use zenoh-jni-runtime:
+- zenoh-java/build.gradle.kts: remove buildZenohJni task and native lib resources from jvmMain, add `implementation(project(":zenoh-jni-runtime"))`, keep jvmArgs for tests
+- Delete all JNI adapter files except JNIZBytes.kt
+- Delete all callback files
+- Delete ZError.kt (now in runtime)
+- Delete jvmMain ZenohLoad.kt and Target.kt
+- Delete androidMain ZenohLoad.kt
+- Remove `internal expect object ZenohLoad` from Zenoh.kt
+- Update Logger.kt: add `ZenohLoad` reference before startLogsViaJNI call
+- Update Config.kt: call `Config(JNIConfig(JNIConfig.loadDefaultConfig()))` etc.
+- Update KeyExpr.kt: `JNIKeyExpr.tryFrom()` now returns String
+- Update Publisher.kt: decompose IntoZBytes/Encoding to primitives for JNIPublisher.put()
+- Update Query.kt: decompose sample to primitives for JNIQuery.replySuccess() etc.
+- Update Session.kt: inline all callback assembly previously in JNISession high-level methods, update Session.launch() to use config.jniConfig.ptr
