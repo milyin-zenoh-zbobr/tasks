@@ -1,0 +1,16 @@
+Plan v21 is **not implementation-ready yet**. It fixes the v20 problems, but two blocking issues remain after checking the actual code paths.
+
+1. **Post-sync `baseline..HEAD` recollection can still mark external commits as stage-owned.**
+   - The plan relies on re-running `collect_agent_commits(work_dir, commit_baseline)` after the first `update_worktree` so the stage record picks up sync-created commits.
+   - But in the current backend, sync is done with `git merge <ref> --no-edit` and fast-forwards are allowed (`zbobr-repo-backend-github/src/github.rs:559-588`). In particular, phase 8 merges `origin/<work_branch>` into the local worktree (`zbobr-repo-backend-github/src/github.rs:860-868`).
+   - If the stage produced no local commits (or otherwise did not diverge) and the remote work branch advanced, that merge can fast-forward HEAD to commits that were not created by this stage. A post-sync `git log --first-parent <baseline>..HEAD` will then include those imported commits, and `store_commits_to_task` will record them as belonging to the current stage.
+   - That violates the explicit requirement behind this task discussion: the recorded set must be the set of commits safely attributable to the stage/agent, because `overwrite_author` must not rewrite commits from other authors.
+   - **Required fix:** do not overwrite the stage record with a blind post-sync branch-range recollection. Record exact local stage commits separately from sync effects, and if sync-created commits must also be listed, add only the commits created locally by sync itself (for example, newly created merge commits), not arbitrary imported history from a fast-forwarded remote branch.
+
+2. **The prompt-side hash contract is inconsistent with how prompts are actually built.**
+   - Agent prompts are built from `serialize_context(&task.context, comments, true, None)` (`zbobr-dispatcher/src/prompts.rs:278-296`), so reviewer/worker agents see the **prompt-mode** rendering, not the persisted user-facing markdown.
+   - The plan says prompt-mode should render abbreviated SHAs, but it also says the reviewer prompt should instruct agents that commits whose **full hashes** appear in any `Commits:` field are the known agent/system commits.
+   - Those two choices do not fit together: with prompt-mode abbreviation, the reviewer prompt will not actually contain full hashes to match against. That is especially problematic here because the whole feature is about commit classification inside prompts.
+   - **Required fix:** pick one clear contract and keep it consistent across serialization and prompt guidance. If prompt-mode must stay abbreviated (which matches the issue’s “short hashes” requirement), then the reviewer prompt should explicitly describe them as commit prefixes and the rest of the design should treat them that way. If exact full-hash matching is required in prompts, then prompt-mode cannot abbreviate them.
+
+With those addressed, the rest of the plan remains directionally aligned with the codebase.
