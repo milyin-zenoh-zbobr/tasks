@@ -1,0 +1,5 @@
+The plan has been submitted. Here's a summary of the two key changes that address the blocking issues from the adversarial review (ctx_rec_12):
+
+**Blocking Issue 1 — Backend-agnostic baseline**: Instead of `origin/<work_branch>..HEAD` (which requires the GitHub backend's remote sync invariant), capture `git rev-parse HEAD` locally right after the `StageContext` is pushed and before the agent runs. Then use `<baseline>..HEAD` before `perform_stash_and_push` in `finalize_stage_session`. This is valid on both backends because user commits can only arrive via `perform_stash_and_push` (which hasn't run yet at capture time).
+
+**Blocking Issue 2 — Per-attempt semantics**: The baseline is captured per-loop-iteration and passed as a new parameter to `finalize_stage_session`. Only the final attempt calls `finalize_stage_session`, so `stages.last_mut()` unambiguously points to that attempt's `StageContext`. Intermediate `execution_failed` retries trigger `continue` before `finalize_stage_session`, and since those are provider-level failures (agent never ran), they correctly have no commits.
