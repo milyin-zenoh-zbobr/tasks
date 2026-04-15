@@ -1,0 +1,1 @@
+The reviewer found that zenoh-java/build.gradle.kts still applies org.mozilla.rust-android-gradle.rust-android and calls configureCargo(), and also wires mergeDebugJniLibFolders/mergeReleaseJniLibFolders to cargoBuild. This duplicates what zenoh-jni-runtime already owns. Remove all of that from zenoh-java so only zenoh-jni-runtime owns Android JNI packaging.
