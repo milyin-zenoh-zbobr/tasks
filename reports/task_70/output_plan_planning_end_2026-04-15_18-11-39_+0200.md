@@ -1,0 +1,5 @@
+The plan is ready. Here's a summary of what Plan v14 addresses compared to the rejected v13:
+
+**Issue 1 fix (retry attribution):** Move baseline capture to *inside* the retry loop (per-attempt, not per-stage). On the retry path before `continue`, locally rewrite authors for that attempt's commits (no push), then collect and store them in that attempt's StageContext. This ensures StageContext 1 (provider A) gets commits from attempt 1, and StageContext 2 (provider B) gets commits from attempt 2 — no cross-attribution.
+
+**Issue 2 fix (empty baseline safety):** `capture_git_head` returns `Result<String>`. On error, baseline is set to `""` with a warning. All downstream consumers — the rewrite call on the retry path, the `rewrite_authors_on_worktree` call in `perform_stash_and_push`, and `collect_agent_commits` — all guard on `!baseline.is_empty()` and skip gracefully rather than producing a malformed git range.
