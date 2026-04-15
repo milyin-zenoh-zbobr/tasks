@@ -1,0 +1,5 @@
+Plan v21 submitted. The two changes from v20 are:
+
+1. **Post-sync re-collection in `perform_stash_and_push`**: After the first `update_worktree` succeeds, re-collect commits from `commit_baseline..HEAD` and overwrite the stored list. This ensures merge commits created by `update_worktree` (system commits) appear in the stage record even when `overwrite_author` is false. The rewrite step still uses `pre_commits` (the pre-sync agent commits) — not `post_sync_commits` — because only agent-authored commits need author rewriting.
+
+2. **`overwrite_author` uses recorded commits**: Instead of `collect_agent_commits(&repo_dir, dest_branch)` (a fresh heuristic that could capture human commits), the command now collects the union of all SHAs from `task.context.stages[*].commits` already stored by the stage-ownership mechanism. If empty, it reports nothing to rewrite and returns.
