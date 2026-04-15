@@ -53,6 +53,7 @@ task = "prompts/task.md"
 mcp = [
     "stop_with_error",
     "stop_with_question",
+    "report_intermediate",
     "report_success",
     "get_ctx_rec",
 ]
@@ -140,7 +141,7 @@ tool = "helper"
 prompts = { main = "prompts/merger.md" }
 
 [workflow.pipelines.plan]
-stages.planning = { role = "planner" }
+stages.planning = { role = "planner", on_success = { next = "plan_review_adversarial" }, on_intermediate = { next = "plan_review_adversarial" } }
 stages.plan_review_adversarial = { role = "plan_reviewer", on_failure = { next = "planning" }, on_intermediate = { next = "plan_review_user" } }
 stages.plan_review_user = { pause = true, on_failure = { next = "planning" } }
 stages.call_work = { call = "work" }
