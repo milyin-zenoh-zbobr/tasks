@@ -1,0 +1,1 @@
+When zenoh.useLocalJniRuntime=true is set but zenoh-java/settings.gradle.kts does not exist, the build should throw an error with a clear message instead of silently falling back to Maven resolution. This ensures local-submodule mode is actually enforced when requested.
