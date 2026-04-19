@@ -1,0 +1,2 @@
+- Remove CompileZenohJNI task that runs cargo build
+- Remove -Djava.library.path=../zenoh-jni/target/release system property from example execution tasks
