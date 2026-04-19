@@ -1,0 +1,2 @@
+Run `./gradlew :zenoh-kotlin:compileKotlinJvm` and `./gradlew :zenoh-kotlin:jvmTest` to verify the build compiles and tests pass.
+Also run `find . -name "*.rs" -o -name "Cargo.toml" | grep -v "zenoh-java/"` to verify no Rust files remain.
