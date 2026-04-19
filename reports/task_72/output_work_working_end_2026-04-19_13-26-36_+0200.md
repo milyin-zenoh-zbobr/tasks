@@ -1,0 +1,1 @@
+Fixed `settings.gradle.kts`: when `zenoh.useLocalJniRuntime=true` is set but the `zenoh-java` submodule isn't initialized, the build now throws a clear error message instead of silently falling back to Maven. Committed as `8aa6930e`.
