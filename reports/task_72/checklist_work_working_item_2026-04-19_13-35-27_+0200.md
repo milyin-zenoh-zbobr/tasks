@@ -1,0 +1,1 @@
+The `publish-github` job in `.github/workflows/release.yml` (lines 110-120) invokes `eclipse-zenoh/ci/publish-crates-github@main`, which is a Rust crate publishing action. Since zenoh-kotlin's Rust code has been entirely removed (zenoh-jni/ directory deleted), this job targets a crate layout that no longer exists. Remove this job from the release workflow.
