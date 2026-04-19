@@ -1,0 +1,1 @@
+In Session.kt resolveQueryable, change Parameters.from(selectorParams).getOrNull() to getOrThrow() so malformed selector params surface as errors within the runCatching block instead of silently becoming null.
