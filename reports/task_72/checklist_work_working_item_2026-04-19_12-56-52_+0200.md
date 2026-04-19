@@ -1,0 +1,3 @@
+zenoh-kotlin/build.gradle.kts currently uses `file("../version.txt").readText().trim()` for the zenoh-jni-runtime Maven dependency, tying it to zenoh-kotlin's own release version. After the migration, zenoh-jni-runtime is owned by zenoh-java's release pipeline and may have independent version numbering.
+
+Fix: Add a `zenohJniRuntimeVersion` property in gradle.properties (defaulting to the current version as a starting point), and use that in build.gradle.kts: `implementation("org.eclipse.zenoh:zenoh-jni-runtime:${property("zenohJniRuntimeVersion")}")`. This decouples the two release cycles.
