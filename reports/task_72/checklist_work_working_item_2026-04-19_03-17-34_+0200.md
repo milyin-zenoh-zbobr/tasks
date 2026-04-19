@@ -1,0 +1,3 @@
+- Delete entire zenoh-jni/ directory
+- Delete rust-toolchain.toml at repo root
+- Verify: no *.rs or Cargo.toml files remain outside zenoh-java/ submodule
