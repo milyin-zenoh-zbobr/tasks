@@ -1,0 +1,1 @@
+All phases of the task are complete. zenoh-kotlin now depends on zenoh-jni-runtime instead of its own JNI implementation, all Rust code has been removed, the build compiles successfully, and all tests pass.
