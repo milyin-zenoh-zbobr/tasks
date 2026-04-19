@@ -1,0 +1,1 @@
+README.md still describes the old model where zenoh-kotlin builds/packages its own native JNI library. Update sections describing JVM publishing, Android publishing, and testing to reflect that zenoh-kotlin now depends on zenoh-jni-runtime from zenoh-java, and that the zenoh-java submodule is used for local builds/tests.
