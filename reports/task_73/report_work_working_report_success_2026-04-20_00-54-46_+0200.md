@@ -1,0 +1,1 @@
+Added a single line `println!("locators: {:?}", info.locators().await);` inside the existing `#[cfg(feature = "unstable")]` block in `examples/examples/z_info.rs`, placed before the `"\ntransports:"` section. No new imports were needed. Build verified with `cargo build --example z_info --features unstable`. Committed as 9378846d2.
