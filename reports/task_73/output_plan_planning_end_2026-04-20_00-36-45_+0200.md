@@ -1,0 +1,1 @@
+The plan is ready. The change is minimal: add a single `println!("locators: {:?}", info.locators().await);` line inside the `#[cfg(feature = "unstable")]` block of `examples/examples/z_info.rs`, before the transports section. No new imports needed.
