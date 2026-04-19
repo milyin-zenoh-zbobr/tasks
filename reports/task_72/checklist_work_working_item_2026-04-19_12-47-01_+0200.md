@@ -1,0 +1,1 @@
+The bump-and-tag script still edits zenoh-jni/Cargo.toml and runs cargo check against it. Since the zenoh-jni crate was deleted, these steps must be removed. Update the script to only manage the Gradle/Kotlin version parts.
