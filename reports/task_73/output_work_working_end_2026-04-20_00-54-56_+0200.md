@@ -1,0 +1,1 @@
+Done. Added `println!("locators: {:?}", info.locators().await);` inside the `#[cfg(feature = "unstable")]` block in `examples/examples/z_info.rs` (before the transports section). The example builds cleanly with `--features unstable`.
