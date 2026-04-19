@@ -1,0 +1,1 @@
+Add internal ReplyKeyExpr field to Query constructor, pass ReplyKeyExpr.entries[acceptReplies] from resolveQueryable, keep public fun acceptsReplies() API shape unchanged.
