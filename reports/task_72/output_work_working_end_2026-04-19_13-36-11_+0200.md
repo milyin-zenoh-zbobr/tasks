@@ -1,0 +1,1 @@
+Removed the stale `publish-github` job from `.github/workflows/release.yml`. That job called `eclipse-zenoh/ci/publish-crates-github@main` — a Rust crate publishing action — but zenoh-kotlin no longer has any Rust code, so the job was obsolete and would have failed at release time. All checklist items are now complete.
