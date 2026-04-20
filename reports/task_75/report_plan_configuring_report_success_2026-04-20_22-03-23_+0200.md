@@ -1,0 +1,1 @@
+Task config inspected: the task explicitly names destination branch 'common-jni', which matches the current destination header. No set_destination_branch call was made. Session finished successfully.
