@@ -1,0 +1,1 @@
+Delete `zenoh-jni-runtime/src/commonMain/kotlin/io/zenoh/exceptions/ZError.kt`
