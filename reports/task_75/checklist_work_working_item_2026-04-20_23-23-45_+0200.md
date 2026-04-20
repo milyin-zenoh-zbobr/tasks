@@ -1,0 +1,2 @@
+Remove the file zenoh-jni-runtime/src/commonMain/kotlin/io/zenoh/exceptions/ZError.kt.
+This file should no longer be part of zenoh-jni-runtime since the error type will be exported from zenoh-java only.
