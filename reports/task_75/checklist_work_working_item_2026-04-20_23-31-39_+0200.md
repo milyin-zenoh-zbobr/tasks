@@ -1,0 +1,13 @@
+Update all call sites in zenoh-java that call JNI adapter methods:
+- Session.kt: ~16 call sites - use error array pattern, throw ZError when sentinel returned
+- Liveliness.kt: 3 liveliness method groups
+- Zenoh.kt: scout and open calls
+- Config.kt: config loading
+- KeyExpr.kt: all 7 key expr functions
+- Publisher.kt: put, delete
+- Query.kt: reply functions
+- Querier.kt: get
+- ZenohId.kt (config/): toString
+- Logger.kt: startLogs
+- ZDeserializer.kt (jvmAndAndroid): JNIZBytes.deserialize
+- ZSerializer.kt (jvmAndAndroid): JNIZBytes.serialize
