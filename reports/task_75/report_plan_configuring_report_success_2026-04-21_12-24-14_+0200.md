@@ -1,0 +1,1 @@
+Task: configure agent for 'throw exceptions from java'. The task specifies destination branch 'common-jni' which matches the current header. No set_destination_branch call performed. Ready for implementation on branch 'zbobr_fix-75-throw-execptions-from-java' targeting base 'common-jni'.
