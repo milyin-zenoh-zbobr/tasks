@@ -1,0 +1,1 @@
+These Rust extension files still use the old `error_out: JObjectArray` + `set_error_string` pattern. They need to be updated to return `jstring` (null=success) + typed `out` params, using `make_error_jstring`. Files: zenoh-jni/src/ext/advanced_publisher.rs, zenoh-jni/src/ext/advanced_subscriber.rs
