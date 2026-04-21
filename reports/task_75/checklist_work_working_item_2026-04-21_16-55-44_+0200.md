@@ -1,0 +1,1 @@
+Same migration from old error: Array<String?> pattern to new String? return with typed out params. Files: JNIAdvancedPublisher.kt, JNIAdvancedSubscriber.kt, JNIScout.kt, JNIZenohId.kt, JNIZBytes.kt, JNIZBytesKotlin.kt
