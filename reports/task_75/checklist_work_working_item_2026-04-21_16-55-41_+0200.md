@@ -1,0 +1,1 @@
+All callers in zenoh-java need to use the new API: allocate typed out arrays, check String? return, throw ZError on non-null. Files: Config.kt, Session.kt, Zenoh.kt, Logger.kt, keyexpr/KeyExpr.kt, pubsub/Publisher.kt, query/Querier.kt, query/Query.kt, liveliness/Liveliness.kt, config/ZenohId.kt, jvmAndAndroidMain/.../ZSerializer.kt, ZDeserializer.kt
