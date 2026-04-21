@@ -1,0 +1,1 @@
+Run ./gradlew build to verify compilation. Then grep zenoh-jni-runtime/src for 'throw ZError' and 'error: Array<String?>' to confirm they're gone. Grep zenoh-jni/src for remaining 'set_error_string' usage. Run tests if build passes.
