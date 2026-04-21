@@ -1,0 +1,1 @@
+All these runtime Kotlin files still use the old `error: Array<String?>` parameter pattern. They need to be updated to: private external fun returns String?; typed out params; public wrappers bridge LongArray to JNI* objects. Files: JNIConfig.kt, JNISession.kt, JNIPublisher.kt, JNIKeyExpr.kt, JNILogger.kt, JNIQuerier.kt, JNIQuery.kt
