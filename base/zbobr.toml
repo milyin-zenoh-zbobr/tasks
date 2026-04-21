@@ -49,6 +49,15 @@ on_merge = "merge"
 main = nan
 task = "prompts/task.md"
 
+[workflow.roles.configurer]
+mcp = [
+    "stop_with_error",
+    "report_success",
+    "set_destination_branch",
+]
+tool = "drudge"
+prompts = { main = "prompts/configurer.md" }
+
 [workflow.roles.planner]
 mcp = [
     "stop_with_error",
@@ -141,6 +150,7 @@ tool = "helper"
 prompts = { main = "prompts/merger.md" }
 
 [workflow.pipelines.plan]
+stages.configuring = { role = "configurer", on_success = { next = "planning" } }
 stages.planning = { role = "planner", on_success = { next = "plan_review_adversarial" }, on_intermediate = { next = "plan_review_adversarial" } }
 stages.plan_review_adversarial = { role = "plan_reviewer", on_failure = { next = "planning" }, on_intermediate = { next = "plan_review_user" } }
 stages.plan_review_user = { pause = true, on_failure = { next = "planning" } }
